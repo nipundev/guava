@@ -1,0 +1,19 @@
+name: Bearer
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      
+permissions:
+  contents: read
+jobs:
+  rule_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Report
+        id: report
+        uses: bearer/bearer-action@v2
+        with:
+          api-key: ${{ secrets.6969847c3d1a79751e66e47112b7cb1b }}
