@@ -195,7 +195,7 @@ final class CollectCollectors {
         ImmutableMap.Builder<K, V>::new,
         (builder, input) -> builder.put(keyFunction.apply(input), valueFunction.apply(input)),
         ImmutableMap.Builder::combine,
-        ImmutableMap.Builder::build);
+        ImmutableMap.Builder::buildOrThrow);
   }
 
   public static <T extends @Nullable Object, K, V>
@@ -227,7 +227,7 @@ final class CollectCollectors {
         () -> new ImmutableSortedMap.Builder<K, V>(comparator),
         (builder, input) -> builder.put(keyFunction.apply(input), valueFunction.apply(input)),
         ImmutableSortedMap.Builder::combine,
-        ImmutableSortedMap.Builder::build,
+        ImmutableSortedMap.Builder::buildOrThrow,
         Collector.Characteristics.UNORDERED);
   }
 
@@ -256,7 +256,7 @@ final class CollectCollectors {
         ImmutableBiMap.Builder<K, V>::new,
         (builder, input) -> builder.put(keyFunction.apply(input), valueFunction.apply(input)),
         ImmutableBiMap.Builder::combine,
-        ImmutableBiMap.Builder::build,
+        ImmutableBiMap.Builder::buildOrThrow,
         new Collector.Characteristics[0]);
   }
 
@@ -464,4 +464,6 @@ final class CollectCollectors {
           return multimap1;
         });
   }
+
+  private CollectCollectors() {}
 }
