@@ -867,7 +867,7 @@ public final class MediaType {
     }
     MediaType mediaType = new MediaType(type, subtype, builder.build());
     // if the attribute isn't charset, we can just inherit the current parsedCharset
-    if (!normalizedAttribute.equals(CHARSET_ATTRIBUTE)) {
+    if (!CHARSET_ATTRIBUTE.equals(normalizedAttribute)) {
       mediaType.parsedCharset = this.parsedCharset;
     }
     // Return one of the constants if the media type is a known type.
